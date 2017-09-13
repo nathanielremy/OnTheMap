@@ -54,6 +54,9 @@
                                         <state key="normal" title="Login">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FEc-g9-8jM"/>
+                                        </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bXt-gB-x1R">
                                         <rect key="frame" x="31" y="212" width="251" height="45"/>
@@ -109,8 +112,66 @@
             </objects>
             <point key="canvasLocation" x="24.800000000000001" y="34.632683658170919"/>
         </scene>
+        <!--List View-->
+        <scene sceneID="Hx4-3m-Lbo">
+            <objects>
+                <viewController id="WgV-Gr-jhb" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TEi-vf-Ccx"/>
+                        <viewControllerLayoutGuide type="bottom" id="EYf-vv-szQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="i7G-ty-BhI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="List View" image="icon_listview-selected" selectedImage="icon_listview-selected" id="z5S-yI-rCJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D6g-rg-qbi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1647" y="363"/>
+        </scene>
+        <!--Map View-->
+        <scene sceneID="MGV-Zw-eD4">
+            <objects>
+                <viewController id="cFd-rl-pWJ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LBX-C8-bGt"/>
+                        <viewControllerLayoutGuide type="bottom" id="dkH-8l-rh1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="we3-iS-ftL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Map View" image="icon_mapview-selected" selectedImage="icon_mapview-selected" id="wRu-s8-lkq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bsY-Y5-yMC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1647" y="-292"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="gQ8-uG-n4P">
+            <objects>
+                <tabBarController storyboardIdentifier="MainTabBarController" id="ckt-Hb-FM1" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="F7E-G6-Va7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="cFd-rl-pWJ" kind="relationship" relationship="viewControllers" id="7BK-iD-ieY"/>
+                        <segue destination="WgV-Gr-jhb" kind="relationship" relationship="viewControllers" id="1wy-N6-UcS"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mo6-2g-77D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="694" y="36"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="icon_listview-selected" width="75" height="50"/>
+        <image name="icon_mapview-selected" width="75" height="50"/>
         <image name="logo-u" width="62" height="62"/>
     </resources>
 </document>
