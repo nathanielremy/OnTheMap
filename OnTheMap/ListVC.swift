@@ -16,6 +16,11 @@ class ListVC: UIViewController {
         return client
     }()
     
+    lazy var parseClient: ParseClient = {
+        let client = ParseClient.singleton()
+        return client
+    }()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setUpTabBar()
@@ -49,5 +54,15 @@ class ListVC: UIViewController {
         
         parent?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout))
         parent?.navigationItem.rightBarButtonItems = [refreshBaritem, pinDropitem]
+    }
+    
+    // Display UIAlertControllers in case of errors
+    func displayAlerView(withTitle title: String, message: String, action: String) {
+        
+        let alertView = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: action, style: .cancel, handler: nil)
+        alertView.addAction(action)
+        
+        self.present(alertView, animated: true, completion: nil)
     }
 }

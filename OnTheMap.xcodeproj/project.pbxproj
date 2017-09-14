@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44159A881F6B09E20026D829 /* StudentInformatiom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44159A871F6B09E20026D829 /* StudentInformatiom.swift */; };
+		44159A8A1F6B10C50026D829 /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44159A891F6B10C50026D829 /* ParseConvenience.swift */; };
 		441714AE1F6872F100C9BD9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441714AD1F6872F100C9BD9A /* AppDelegate.swift */; };
 		441714B01F6872F100C9BD9A /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441714AF1F6872F100C9BD9A /* LoginVC.swift */; };
 		441714B31F6872F100C9BD9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 441714B11F6872F100C9BD9A /* Main.storyboard */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		44159A871F6B09E20026D829 /* StudentInformatiom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformatiom.swift; sourceTree = "<group>"; };
+		44159A891F6B10C50026D829 /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
 		441714AA1F6872F100C9BD9A /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		441714AD1F6872F100C9BD9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		441714AF1F6872F100C9BD9A /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -98,6 +102,7 @@
 		441714C11F6877C100C9BD9A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				44159A871F6B09E20026D829 /* StudentInformatiom.swift */,
 				441714C31F68785200C9BD9A /* Clients */,
 			);
 			name = Models;
@@ -127,6 +132,7 @@
 			children = (
 				444291211F6AC9AD0059ED58 /* ConstantsParse.swift */,
 				4442911F1F6AC9820059ED58 /* ParseClient.swift */,
+				44159A891F6B10C50026D829 /* ParseConvenience.swift */,
 			);
 			name = Parse;
 			sourceTree = "<group>";
@@ -214,6 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44159A8A1F6B10C50026D829 /* ParseConvenience.swift in Sources */,
 				4442911E1F6AB9E80059ED58 /* ListVC.swift in Sources */,
 				441714B01F6872F100C9BD9A /* LoginVC.swift in Sources */,
 				4442911C1F6AB00D0059ED58 /* MapVC.swift in Sources */,
@@ -221,6 +228,7 @@
 				441714AE1F6872F100C9BD9A /* AppDelegate.swift in Sources */,
 				44DECFC81F69864A00C9E3CE /* UdacityConvenience.swift in Sources */,
 				444291221F6AC9AD0059ED58 /* ConstantsParse.swift in Sources */,
+				44159A881F6B09E20026D829 /* StudentInformatiom.swift in Sources */,
 				444291201F6AC9820059ED58 /* ParseClient.swift in Sources */,
 				44DECFC41F69795100C9E3CE /* UdacityClient.swift in Sources */,
 			);

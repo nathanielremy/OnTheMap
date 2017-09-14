@@ -73,9 +73,10 @@ class UdacityClient {
     }
     
     // MARK: Singleton
-    class func singleton() -> UdacityClient {
+    static func singleton() -> UdacityClient {
         struct Singleton {
             static var sharedInstance = UdacityClient()
         }
         return Singleton.sharedInstance
-    }}
+    }
+}

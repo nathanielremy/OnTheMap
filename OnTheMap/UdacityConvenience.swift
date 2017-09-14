@@ -58,8 +58,7 @@ extension UdacityClient {
             
             if let error = error { completionHandlerForLogout(false, error); return }
             
-            if let result = result {
-                print(result)
+            if let _ = result {
                 completionHandlerForLogout(true, nil)
             } else {
                 let userInfo = [NSLocalizedDescriptionKey:"result is empty"]

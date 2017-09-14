@@ -20,10 +20,26 @@ class MapVC: UIViewController  {
         return client
     }()
     
+    lazy var parseClient: ParseClient = {
+        let client = ParseClient.singleton()
+        return client
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        refresh()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         mapView.delegate = self
         setUpTabBar()
+    }
+    
+    
+    // IMPLEMENT
+    func updateMapUI() {
+        print("updateMapUI")
     }
     
     // Drop a pin on map
@@ -32,7 +48,21 @@ class MapVC: UIViewController  {
     }
     
     func refresh() {
-        print("you cant refresh yet MAP VC")
+        parseClient.loadRecents { (success, error) in
+            
+            guard (error == nil) else {
+                DispatchQueue.main.async {
+                    self.displayAlerView(withTitle: "Could not load Data", message: "Try joining a better network", action: "Okay")
+                }
+                return
+            }
+            
+            if success {
+                DispatchQueue.main.async {
+                    self.updateMapUI()
+                }
+            }
+        }
     }
     
     func logout() {
@@ -55,6 +85,16 @@ class MapVC: UIViewController  {
         parent?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout))
         parent?.navigationItem.rightBarButtonItems = [refreshBaritem, pinDropitem]
     }
+    
+    // Display UIAlertControllers in case of errors
+    func displayAlerView(withTitle title: String, message: String, action: String) {
+        
+        let alertView = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: action, style: .cancel, handler: nil)
+        alertView.addAction(action)
+        
+        self.present(alertView, animated: true, completion: nil)
+    }
 }
 
 extension MapVC: MKMapViewDelegate {
@@ -63,16 +103,3 @@ extension MapVC: MKMapViewDelegate {
     
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
