@@ -20,16 +20,20 @@ class LoginVC: UIViewController {
         return client
     }()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        emailTextField.text = ""
+        passwordTextField.text = ""
     }
     
     @IBAction func loginPressed(_ sender: Any) {
         udacityClient.loginForSessionID(email: emailTextField.text!, password: passwordTextField.text!) { (success, error) in
             
             if error != nil {
-                self.manageLoginErrors(error: error!)
+                DispatchQueue.main.async {
+                    self.manageLoginErrors(error: error!)
+                }
             } else if success {
                 DispatchQueue.main.async {
                     self.completeLogIn()
@@ -38,8 +42,18 @@ class LoginVC: UIViewController {
         }
     }
     
+    @IBAction func signUpPressed(_ sender: Any) {
+        let udacitySignUpURL = URL(string: ConstantsUdacity.URL.udacitySignUpURL)
+        guard let url = udacitySignUpURL else { print("LoginVC/signUpPressed: URL could not be constructed"); return }
+        
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+}
+
+extension LoginVC {
+    
     func completeLogIn() {
-        let controller = storyboard?.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController
+        let controller = storyboard?.instantiateViewController(withIdentifier: "MainNavigationController") as? UINavigationController
         
         if let controller = controller {
             self.present(controller, animated: true, completion: nil)
@@ -51,19 +65,12 @@ class LoginVC: UIViewController {
     // Network or Credential erros ?
     func manageLoginErrors(error: NSError) {
         if error.localizedDescription == "The Internet connection appears to be offline." || error.localizedDescription == "The request timed out." {
-            DispatchQueue.main.async {
                 self.displayAlerView(withTitle: "Poor Internet Connection", message: "Try to re-connenct", action: "Okay")
-            }
             
         } else if error.localizedDescription == "Your request returned a statusCode other than 2xxx" {
-            DispatchQueue.main.async {
                 self.displayAlerView(withTitle: "Email or password Incorrect", message: "Please use valid login credentials", action: "Okay")
-            }
         }
     }
-}
-
-extension LoginVC {
     
     // Display UIAlertControllers in case of errors
     func displayAlerView(withTitle title: String, message: String, action: String) {
@@ -75,15 +82,3 @@ extension LoginVC {
         self.present(alertView, animated: true, completion: nil)
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,5 +1,5 @@
 //
-//  UdacityConstants.swift
+//  ConstantsUdacity.swift
 //  OnTheMap
 //
 //  Created by Nathaniel Remy on 13/09/2017.
@@ -12,6 +12,7 @@ class ConstantsUdacity {
     
     struct URL {
         static let baseURL = "https://www.udacity.com/api/session"
+        static let udacitySignUpURL = "https://www.udacity.com/account/auth#!/signup"
     }
     
     struct URLRequest {
