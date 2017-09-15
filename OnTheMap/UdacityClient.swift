@@ -10,10 +10,6 @@ import Foundation
 
 class UdacityClient {
     
-    // Stored properties
-    
-    var sessionID: String? = nil
-    
     func udacityDataProvider(URLrequest request: URLRequest, completionHandlerForUdacityDataProvider: @escaping (_ results: AnyObject?, _ error: NSError?) -> Void) {
         
         let task = URLSession.shared

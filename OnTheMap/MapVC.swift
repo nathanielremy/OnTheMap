@@ -27,19 +27,13 @@ class MapVC: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.delegate = self
         refresh()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        mapView.delegate = self
         setUpTabBar()
-    }
-    
-    
-    // IMPLEMENT
-    func updateMapUI() {
-        print("updateMapUI")
     }
     
     // Drop a pin on map
@@ -47,6 +41,7 @@ class MapVC: UIViewController  {
         print("Cant drop Pin yet MAP VC")
     }
     
+    //load the 100 most recent student locations and place them on map or signal error
     func refresh() {
         parseClient.loadRecents { (success, error) in
             
@@ -72,13 +67,16 @@ class MapVC: UIViewController  {
                     self.dismiss(animated: true, completion: nil)
                 }
             } else {
-                print("MapVC/logOut: FAIL")
+                DispatchQueue.main.async {
+                    self.displayAlerView(withTitle: "Logout Fail", message: "Try again", action: "Okay")
+                }
             }
         }
     }
     
     func setUpTabBar() {
         
+        // Set up the UIBarButtonItems and the relevant functions for each
         let refreshBaritem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_refresh"), style: .plain, target: self, action: #selector(refresh))
         let pinDropitem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_pin"), style: .plain, target: self, action: #selector(dropPin))
         
@@ -95,11 +93,4 @@ class MapVC: UIViewController  {
         
         self.present(alertView, animated: true, completion: nil)
     }
-}
-
-extension MapVC: MKMapViewDelegate {
-    
-    
-    
-    
 }

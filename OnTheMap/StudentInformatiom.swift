@@ -12,8 +12,8 @@ struct StudentInformation {
     
     let firstName: String?
     let lastName: String?
-    let latitude: Float?
-    let longitude: Float?
+    let latitude: Double?
+    let longitude: Double?
     let mapString: String?
     let mediaURL: String?
     let objectID: String?
@@ -33,13 +33,13 @@ struct StudentInformation {
             self.lastName = nil
         }
         
-        if let latitude = dictionary[ConstantsParse.JSONResponseKeys.latitude] as? Float {
+        if let latitude = dictionary[ConstantsParse.JSONResponseKeys.latitude] as? Double {
             self.latitude = latitude
         } else {
             self.latitude = nil
         }
         
-        if let longitude = dictionary[ConstantsParse.JSONResponseKeys.longitude] as? Float {
+        if let longitude = dictionary[ConstantsParse.JSONResponseKeys.longitude] as? Double {
             self.longitude = longitude
         } else {
             self.longitude = nil

@@ -21,18 +21,7 @@ extension UdacityClient {
             
             guard (error == nil) else { completionHandlerForLogin(false, error); return }
             
-            if (result != nil) {
-                
-                guard let session = result?[ConstantsUdacity.APIResponseKeys.session] as? [String:AnyObject], let sessionID = session[ConstantsUdacity.APIResponseKeys.id] as? String else {
-                    let userInfo = [NSLocalizedDescriptionKey:"NO SessionID"]
-                    completionHandlerForLogin(false, NSError(domain: "loginForSessionID", code: 1, userInfo: userInfo))
-                    return
-                }
-                
-                self.sessionID = sessionID
-                completionHandlerForLogin(true, nil)
-                
-            }
+            completionHandlerForLogin(true, nil)
         }
     }
     

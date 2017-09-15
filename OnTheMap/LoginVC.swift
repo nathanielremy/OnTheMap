@@ -19,12 +19,10 @@ class LoginVC: UIViewController {
         let client = UdacityClient.singleton()
         return client
     }()
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        emailTextField.text = ""
-        passwordTextField.text = ""
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureTextFields()
     }
     
     @IBAction func loginPressed(_ sender: Any) {
@@ -80,5 +78,12 @@ extension LoginVC {
         alertView.addAction(action)
         
         self.present(alertView, animated: true, completion: nil)
+    }
+    
+    func configureTextFields() {
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        emailTextField.text = ""
+        passwordTextField.text = ""
     }
 }

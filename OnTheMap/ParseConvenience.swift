@@ -27,6 +27,8 @@ extension ParseClient {
                 return
             }
             
+            self.studentInformation.removeAll()
+            
             for result in results {
                 let student = StudentInformation(fromDictionary: result)
                 self.studentInformation.append(student)

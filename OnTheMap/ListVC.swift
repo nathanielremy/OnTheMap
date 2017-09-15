@@ -10,7 +10,10 @@ import UIKit
 
 class ListVC: UIViewController {
     
-    // Stored Properties
+    // Interface Builder Outlets
+    @IBOutlet weak var tableView: UITableView!
+    
+   // Stored Properties
     lazy var udacityClient: UdacityClient = {
         let client = UdacityClient.singleton()
         return client
@@ -20,6 +23,13 @@ class ListVC: UIViewController {
         let client = ParseClient.singleton()
         return client
     }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
+        refresh()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -32,7 +42,22 @@ class ListVC: UIViewController {
     }
     
     func refresh() {
-        print("you cant refresh yet LIST VC")
+        parseClient.loadRecents { (success, error) in
+            guard (error == nil) else {
+                DispatchQueue.main.async {
+                    self.displayAlerView(withTitle: "Could not load Data", message: "Try joining a better network", action: "Okay")
+                }
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .none, animated: true)
+            }
+            
+            if success {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     func logout() {
@@ -42,7 +67,9 @@ class ListVC: UIViewController {
                     self.dismiss(animated: true, completion: nil)
                 }
             } else {
-                print("ListVC/logOut: FAIL")
+                DispatchQueue.main.async {
+                    self.displayAlerView(withTitle: "Logout Fail", message: "Try again", action: "Okay")
+                }
             }
         }
     }

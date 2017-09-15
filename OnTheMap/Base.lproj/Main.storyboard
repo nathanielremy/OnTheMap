@@ -39,13 +39,13 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" alpha="0.55000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="iGo-jl-jrG">
                                         <rect key="frame" x="0.0" y="106" width="313" height="45"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s0p-um-gAB">
                                         <rect key="frame" x="0.0" y="159" width="313" height="45"/>
@@ -126,13 +126,38 @@
                     <view key="view" contentMode="scaleToFill" id="i7G-ty-BhI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vhh-kK-hnd">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="ZJo-la-zZc">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZJo-la-zZc" id="GkY-33-ZyC">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Vhh-kK-hnd" firstAttribute="top" secondItem="i7G-ty-BhI" secondAttribute="top" id="Q7r-Ge-DLF"/>
+                            <constraint firstAttribute="trailing" secondItem="Vhh-kK-hnd" secondAttribute="trailing" id="T8o-N9-lun"/>
+                            <constraint firstItem="Vhh-kK-hnd" firstAttribute="leading" secondItem="i7G-ty-BhI" secondAttribute="leading" id="fkr-kl-V8k"/>
+                            <constraint firstItem="EYf-vv-szQ" firstAttribute="top" secondItem="Vhh-kK-hnd" secondAttribute="bottom" id="vIt-Fz-PjG"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="List" image="icon_listview-selected" selectedImage="icon_listview-selected" id="z5S-yI-rCJ"/>
+                    <connections>
+                        <outlet property="tableView" destination="Vhh-kK-hnd" id="Pmj-a6-hhj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D6g-rg-qbi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2270" y="369"/>
+            <point key="canvasLocation" x="2269.5999999999999" y="368.36581709145429"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="a1p-Ol-vwL">
