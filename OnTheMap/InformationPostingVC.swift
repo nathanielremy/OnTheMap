@@ -64,9 +64,9 @@ class InformationPostingVC: UIViewController {
             parseClient.mediaURL = textField.text!
             
             parseClient.addLocation(completionHandler: { (success, error) in
-                // Code
+                
             })
-            
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
