@@ -10,6 +10,21 @@ import Foundation
 
 extension ParseClient {
     
+    func addLocation(completionHandler: @escaping (_ success: Bool, _ error: NSError?) -> Void) {
+        
+//       print("uniqueKey: \(self.accountKey)\nfirstName: \(self.firstName)\nlastName: \(self.lastName)\nmapString: \(self.mapString)\nmediaURL: \(self.mediaURL)\nlatitude: \(self.latitude)\nlongitude: \(self.longitude)")
+//        
+        
+        guard let uniqueKey = self.accountKey, let firstName = self.firstName, let lastName = self.lastName, let mapString = self.mapString, let mediaURL = self.mediaURL, let lat = self.latitude, let long = self.longitude else {
+            print("NOOOOO")
+            return
+        }
+        
+        print("uniqueKey: \(uniqueKey)\nfirstName: \(firstName)\nlastName: \(lastName)\nmapString: \(mapString)\nmediaURL: \(mediaURL)\nlatitude: \(lat)\nlongitude: \(long)")
+        // YOU ARE HEREE
+        
+    }
+    
     func loadRecents(completionHandlerForLoadRecents: @escaping (_ success: Bool, _ error: NSError?) -> Void ) {
         
         let parameters = [ConstantsParse.QueryItemKeys.limit:ConstantsParse.QueryItemValues.limit, ConstantsParse.QueryItemKeys.order:ConstantsParse.QueryItemValues.order]

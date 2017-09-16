@@ -30,7 +30,7 @@ extension UdacityClient {
                 completionHandlerForLogin(false, NSError(domain: "loginForSessionID", code: 1, userInfo: userInfo))
                 return
             }
-            self.accountKey = accountKey
+            self.parseClient.accountKey = accountKey
             
             //Get public user information from accountKey
             let infoRequest = self.customURLRequest(withBaseURLString: ConstantsUdacity.URL.userPublicData + "/\(accountKey)", headerFields: nil, HTTPMethod: "GET", HTTPBody: nil)
@@ -45,8 +45,17 @@ extension UdacityClient {
                 
                 guard (error == nil) else { completionHandlerForLogin(false, error); return }
                 
-                print("User Info result: \(result)")
+                guard let user = result?[ConstantsUdacity.APIResponseKeys.user] as? [String:AnyObject], let firstName = user[ConstantsUdacity.APIResponseKeys.firstName] as? String, let lastName = user[ConstantsUdacity.APIResponseKeys.lastName] as? String else {
+                    
+                    let userInfo = [NSLocalizedDescriptionKey:"No public userInfo returned in JSON"]
+                    completionHandlerForLogin(false, NSError(domain: "loginForPublicUserInfo", code: 1, userInfo: userInfo))
+                    return
+                }
                 
+                self.parseClient.firstName = firstName
+                self.parseClient.lastName = lastName
+                
+                completionHandlerForLogin(true, nil)
             })
             
             

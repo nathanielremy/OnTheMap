@@ -28,12 +28,12 @@ class ListVC: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        refresh()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setUpTabBar()
+        refresh()
+        setUpNavBar()
     }
     
     //Present informationPostingVC to add location and link
@@ -78,7 +78,7 @@ class ListVC: UIViewController {
         }
     }
     
-    func setUpTabBar() {
+    func setUpNavBar() {
         
         let refreshBaritem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_refresh"), style: .plain, target: self, action: #selector(refresh))
         let pinDropitem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_pin"), style: .plain, target: self, action: #selector(dropPin))

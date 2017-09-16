@@ -10,7 +10,11 @@ import Foundation
 
 class UdacityClient {
     
-    var accountKey: String? = nil
+    // Stored Properties
+    lazy var parseClient: ParseClient = {
+        let client = ParseClient.singleton()
+        return client
+    }()
     
     func udacityDataProvider(URLrequest request: URLRequest, completionHandlerForUdacityDataProvider: @escaping (_ results: AnyObject?, _ error: NSError?) -> Void) {
         

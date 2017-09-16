@@ -10,6 +10,14 @@ import Foundation
 
 class ParseClient {
     
+    //Stored properties
+    var accountKey: String? = nil
+    var firstName: String? = nil
+    var lastName: String? = nil
+    var mapString: String? = nil
+    var mediaURL: String? = nil
+    var latitude: Double? = nil
+    var longitude: Double? = nil
     var studentInformation = [StudentInformation]()
     
     func parseDataProvider(URLRequest request: URLRequest, completionHandlerForParseDataProvider: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void ) {

@@ -28,12 +28,12 @@ class MapVC: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        refresh()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setUpTabBar()
+        setUpNavBar()
+        refresh()
     }
     
     //Present informationPostingVC to add location and link
@@ -78,7 +78,7 @@ class MapVC: UIViewController  {
         }
     }
     
-    func setUpTabBar() {
+    func setUpNavBar() {
         
         // Set up the UIBarButtonItems and the relevant functions for each
         let refreshBaritem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_refresh"), style: .plain, target: self, action: #selector(refresh))

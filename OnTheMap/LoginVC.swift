@@ -20,8 +20,8 @@ class LoginVC: UIViewController {
         return client
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         configureTextFields()
     }
     

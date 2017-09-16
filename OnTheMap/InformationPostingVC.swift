@@ -19,7 +19,10 @@ class InformationPostingVC: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // Stored Properties
-    var locationString: String? = nil
+    lazy var parseClient: ParseClient = {
+        let client = ParseClient.singleton()
+        return client
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +38,11 @@ class InformationPostingVC: UIViewController {
         if textField.text == "" {
             displayAlerView(withTitle: "Invalid request", message: "Text cannot be blank", action: "Okay")
             return
-        
         }
+        
         if mapView.isHidden {
             activityIndicator.startAnimating()
+            parseClient.mapString = textField.text!
             
             getCoordinates(from: textField.text!, completionHandlerForCoordinates: { (success, coordinate) in
                 if !success {
@@ -48,12 +52,21 @@ class InformationPostingVC: UIViewController {
                         self.activityIndicator.stopAnimating()
                     }
                 } else {
+                    self.parseClient.latitude = coordinate!.latitude
+                    self.parseClient.longitude = coordinate!.longitude
                     self.activityIndicator.stopAnimating()
                     self.setMediaURLUI()
                     self.placePinAt(coordinate: coordinate!)
                 }
                 
             })
+        } else {
+            parseClient.mediaURL = textField.text!
+            
+            parseClient.addLocation(completionHandler: { (success, error) in
+                // Code
+            })
+            
         }
     }
     
@@ -74,6 +87,7 @@ class InformationPostingVC: UIViewController {
         self.mapView.isHidden = false
         self.findOrSubmitButton.setTitle("Submit", for: .normal)
         self.textLabel.text = "Share a link"
+        self.textField.text = ""
         self.textField.placeholder = "Enter link here"
     }
     
@@ -105,6 +119,7 @@ extension InformationPostingVC: MKMapViewDelegate {
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
         self.mapView.addAnnotation(annotation)
+        self.mapView.centerCoordinate = coordinate
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
