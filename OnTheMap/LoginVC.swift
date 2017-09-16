@@ -26,7 +26,7 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func loginPressed(_ sender: Any) {
-        udacityClient.loginForSessionID(email: emailTextField.text!, password: passwordTextField.text!) { (success, error) in
+        udacityClient.loginForPublicUserInfo(email: emailTextField.text!, password: passwordTextField.text!) { (success, error) in
             
             if error != nil {
                 DispatchQueue.main.async {
@@ -85,5 +85,12 @@ extension LoginVC {
         passwordTextField.delegate = self
         emailTextField.text = ""
         passwordTextField.text = ""
+    }
+}
+
+extension LoginVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

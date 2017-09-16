@@ -13,6 +13,7 @@ class ConstantsUdacity {
     struct URL {
         static let baseURL = "https://www.udacity.com/api/session"
         static let udacitySignUpURL = "https://www.udacity.com/account/auth#!/signup"
+        static let userPublicData = "https://www.udacity.com/api/users"
     }
     
     struct URLRequest {
@@ -21,7 +22,7 @@ class ConstantsUdacity {
     }
     
     struct APIResponseKeys {
-        static let session = "session"
-        static let id = "id"
+        static let account = "account"
+        static let key = "key"
     }
 }

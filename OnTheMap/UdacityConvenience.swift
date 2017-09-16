@@ -11,17 +11,45 @@ import Foundation
 extension UdacityClient {
     
     //LogIn
-    func loginForSessionID(email: String, password: String, completionHandlerForLogin: @escaping (_ success: Bool, _ error: NSError?) -> Void) {
+    func loginForPublicUserInfo(email: String, password: String, completionHandlerForLogin: @escaping (_ success: Bool, _ error: NSError?) -> Void) {
         
         let request = customURLRequest(withBaseURLString: ConstantsUdacity.URL.baseURL, headerFields: ["Accept":"application/json", "Content-Type":"application/json"], HTTPMethod: "POST", HTTPBody: "{\"udacity\": {\"username\": \"\(email)\", \"password\": \"\(password)\"}}")
         
-        guard let urlRequest = request else { print("UdacityClient/LoginForSessionID: Invalid URLRequest"); return }
+        guard let urlRequest = request else {
+            let userInfo = [NSLocalizedDescriptionKey:"Invalid URLRequest"]
+            completionHandlerForLogin(false, NSError(domain: "loginForPublicUserInfo", code: 1, userInfo: userInfo))
+            return
+        }
         
         udacityDataProvider(URLrequest: urlRequest) { (result, error) in
             
             guard (error == nil) else { completionHandlerForLogin(false, error); return }
             
-            completionHandlerForLogin(true, nil)
+            guard let account = result?[ConstantsUdacity.APIResponseKeys.account] as? [String:AnyObject], let accountKey = account[ConstantsUdacity.APIResponseKeys.key] as? String else {
+                let userInfo = [NSLocalizedDescriptionKey:"No accountKey returned"]
+                completionHandlerForLogin(false, NSError(domain: "loginForSessionID", code: 1, userInfo: userInfo))
+                return
+            }
+            self.accountKey = accountKey
+            
+            //Get public user information from accountKey
+            let infoRequest = self.customURLRequest(withBaseURLString: ConstantsUdacity.URL.userPublicData + "/\(accountKey)", headerFields: nil, HTTPMethod: "GET", HTTPBody: nil)
+            
+            guard let newRequest = infoRequest else {
+                let userInfo = [NSLocalizedDescriptionKey:"Invalid URLRequest"]
+                completionHandlerForLogin(false, NSError(domain: "loginForPublicUserInfo", code: 1, userInfo: userInfo))
+                return
+            }
+            
+            self.udacityDataProvider(URLrequest: newRequest, completionHandlerForUdacityDataProvider: { (result, error) in
+                
+                guard (error == nil) else { completionHandlerForLogin(false, error); return }
+                
+                print("User Info result: \(result)")
+                
+            })
+            
+            
         }
     }
     

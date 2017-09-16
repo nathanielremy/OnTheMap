@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -158,6 +159,100 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D6g-rg-qbi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2269.5999999999999" y="368.36581709145429"/>
+        </scene>
+        <!--Information PostingVC-->
+        <scene sceneID="ezx-QD-L1E">
+            <objects>
+                <viewController storyboardIdentifier="InformationPostingVC" id="ylZ-SH-BkR" customClass="InformationPostingVC" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="S3a-FS-Nt6"/>
+                        <viewControllerLayoutGuide type="bottom" id="VGb-Is-e6D"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9vL-Tu-jIv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dBt-qv-pDS">
+                                <rect key="frame" x="319" y="20" width="48" height="30"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissView:" destination="ylZ-SH-BkR" eventType="touchUpInside" id="cob-5c-9ie"/>
+                                </connections>
+                            </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="oTJ-R4-jud">
+                                <rect key="frame" x="0.0" y="178" width="375" height="440"/>
+                            </mapView>
+                            <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4P-9B-Uk2">
+                                <rect key="frame" x="132.5" y="548" width="110" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="kKT-0g-pKB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Find"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="findOrSubmit:" destination="ylZ-SH-BkR" eventType="touchUpInside" id="ktl-IB-bdc"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you Located ?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFL-Ke-6eV">
+                                <rect key="frame" x="16" y="60" width="343" height="25.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                <color key="textColor" red="0.86274509803921573" green="0.86274509803921573" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter location Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TLc-Lt-lA8">
+                                <rect key="frame" x="16" y="120" width="343" height="18"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="BDr-Kr-asj">
+                                <rect key="frame" x="177" y="323.5" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.091343985568674374" green="0.65972334314418912" blue="0.97875308990478516" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="CFL-Ke-6eV" secondAttribute="trailing" id="2fW-4p-MfO"/>
+                            <constraint firstItem="TLc-Lt-lA8" firstAttribute="leading" secondItem="9vL-Tu-jIv" secondAttribute="leadingMargin" id="5WQ-uw-cnz"/>
+                            <constraint firstItem="BDr-Kr-asj" firstAttribute="centerY" secondItem="9vL-Tu-jIv" secondAttribute="centerY" id="6JA-71-fu6"/>
+                            <constraint firstItem="TLc-Lt-lA8" firstAttribute="top" secondItem="CFL-Ke-6eV" secondAttribute="bottom" constant="35" id="8Qu-q6-zgJ"/>
+                            <constraint firstItem="VGb-Is-e6D" firstAttribute="top" secondItem="P4P-9B-Uk2" secondAttribute="bottom" constant="40" id="9Ds-VU-pQl"/>
+                            <constraint firstItem="oTJ-R4-jud" firstAttribute="leading" secondItem="9vL-Tu-jIv" secondAttribute="leading" id="CNO-dh-MiL"/>
+                            <constraint firstAttribute="trailing" secondItem="dBt-qv-pDS" secondAttribute="trailing" constant="8" id="Csh-gx-BBW"/>
+                            <constraint firstAttribute="trailing" secondItem="oTJ-R4-jud" secondAttribute="trailing" id="Hbc-Kq-CFw"/>
+                            <constraint firstItem="CFL-Ke-6eV" firstAttribute="top" secondItem="S3a-FS-Nt6" secondAttribute="bottom" constant="40" id="HqW-wp-YCm"/>
+                            <constraint firstItem="dBt-qv-pDS" firstAttribute="top" secondItem="S3a-FS-Nt6" secondAttribute="bottom" id="ISE-mT-sQN"/>
+                            <constraint firstItem="CFL-Ke-6eV" firstAttribute="leading" secondItem="9vL-Tu-jIv" secondAttribute="leadingMargin" id="JrS-m0-bCp"/>
+                            <constraint firstItem="TLc-Lt-lA8" firstAttribute="centerX" secondItem="9vL-Tu-jIv" secondAttribute="centerX" id="K4t-7H-8Wt"/>
+                            <constraint firstItem="P4P-9B-Uk2" firstAttribute="centerX" secondItem="9vL-Tu-jIv" secondAttribute="centerX" id="Xk9-cC-COZ"/>
+                            <constraint firstItem="oTJ-R4-jud" firstAttribute="height" secondItem="9vL-Tu-jIv" secondAttribute="height" multiplier="0.66" id="YGV-0l-Mih"/>
+                            <constraint firstItem="CFL-Ke-6eV" firstAttribute="centerX" secondItem="9vL-Tu-jIv" secondAttribute="centerX" id="fP7-73-B9w"/>
+                            <constraint firstItem="BDr-Kr-asj" firstAttribute="centerX" secondItem="9vL-Tu-jIv" secondAttribute="centerX" id="igo-S7-Ufs"/>
+                            <constraint firstItem="VGb-Is-e6D" firstAttribute="top" secondItem="oTJ-R4-jud" secondAttribute="bottom" id="lVh-kx-IPR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TLc-Lt-lA8" secondAttribute="trailing" id="xQf-XU-dli"/>
+                        </constraints>
+                    </view>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="BDr-Kr-asj" id="luo-Gj-GMY"/>
+                        <outlet property="findOrSubmitButton" destination="P4P-9B-Uk2" id="tUX-8d-avB"/>
+                        <outlet property="mapView" destination="oTJ-R4-jud" id="QSf-TN-2tj"/>
+                        <outlet property="textField" destination="TLc-Lt-lA8" id="iCq-5h-6zy"/>
+                        <outlet property="textLabel" destination="CFL-Ke-6eV" id="Ywo-fa-YEW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dz6-O8-GDa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2999.1999999999998" y="32.833583208395808"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="a1p-Ol-vwL">

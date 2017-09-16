@@ -36,9 +36,13 @@ class MapVC: UIViewController  {
         setUpTabBar()
     }
     
-    // Drop a pin on map
+    //Present informationPostingVC to add location and link
     func dropPin() {
-        print("Cant drop Pin yet MAP VC")
+        let controller = storyboard?.instantiateViewController(withIdentifier: "InformationPostingVC")
+        
+        guard let VC = controller else { displayAlerView(withTitle: "Report", message: "Cannot open view, please report this problem", action: "Okay"); return }
+        
+        self.present(VC, animated: true, completion: nil)
     }
     
     //load the 100 most recent student locations and place them on map or signal error
