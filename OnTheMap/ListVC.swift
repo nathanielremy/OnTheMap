@@ -45,6 +45,7 @@ class ListVC: UIViewController {
         self.present(VC, animated: true, completion: nil)
     }
     
+    //refresh tableView with recent locations
     func refresh() {
         parseClient.loadRecents { (success, error) in
             guard (error == nil) else {
@@ -54,12 +55,11 @@ class ListVC: UIViewController {
                 return
             }
             
-            DispatchQueue.main.async {
-                self.tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .none, animated: true)
-            }
-            
             if success {
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .none, animated: true)
+                }
             }
         }
     }

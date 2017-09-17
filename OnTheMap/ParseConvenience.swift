@@ -10,6 +10,7 @@ import Foundation
 
 extension ParseClient {
     
+    // Convenience method to add location
     func addLocation(completionHandler: @escaping (_ success: Bool, _ error: NSError?) -> Void) {
 
         guard let uniqueKey = self.accountKey, let firstName = self.firstName, let lastName = self.lastName, let mapString = self.mapString, let mediaURL = self.mediaURL, let lat = self.latitude, let long = self.longitude else {
@@ -38,6 +39,7 @@ extension ParseClient {
         
     }
     
+    //convenience method to load recently added locations
     func loadRecents(completionHandlerForLoadRecents: @escaping (_ success: Bool, _ error: NSError?) -> Void ) {
         
         let parameters = [ConstantsParse.QueryItemKeys.limit:ConstantsParse.QueryItemValues.limit, ConstantsParse.QueryItemKeys.order:ConstantsParse.QueryItemValues.order]

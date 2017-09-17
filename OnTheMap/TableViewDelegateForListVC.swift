@@ -11,6 +11,7 @@ import UIKit
 
 extension ListVC: UITableViewDelegate, UITableViewDataSource {
     
+    //DataSource methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return parseClient.studentInformation.count
     }
@@ -30,6 +31,7 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    //Delegate methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let student = parseClient.studentInformation[indexPath.row]

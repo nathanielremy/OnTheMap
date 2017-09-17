@@ -25,6 +25,7 @@ class LoginVC: UIViewController {
         configureTextFields()
     }
     
+    //Use convenience method to login and get public user info
     @IBAction func loginPressed(_ sender: Any) {
         udacityClient.loginForPublicUserInfo(email: emailTextField.text!, password: passwordTextField.text!) { (success, error) in
             
@@ -40,6 +41,7 @@ class LoginVC: UIViewController {
         }
     }
     
+    //Open default web browser to Udacity.com if user does not have an account
     @IBAction func signUpPressed(_ sender: Any) {
         let udacitySignUpURL = URL(string: ConstantsUdacity.URL.udacitySignUpURL)
         guard let url = udacitySignUpURL else { print("LoginVC/signUpPressed: URL could not be constructed"); return }
@@ -50,6 +52,7 @@ class LoginVC: UIViewController {
 
 extension LoginVC {
     
+    //After loging in and getting public user info go to next view
     func completeLogIn() {
         let controller = storyboard?.instantiateViewController(withIdentifier: "MainNavigationController") as? UINavigationController
         

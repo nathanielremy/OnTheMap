@@ -11,6 +11,7 @@ import MapKit
 
 extension MapVC: MKMapViewDelegate {
     
+    //Method to add recent locations on mapView as pins with annotations
     func updateMapUI() {
         
         let locations = parseClient.studentInformation
@@ -37,6 +38,7 @@ extension MapVC: MKMapViewDelegate {
         self.mapView.addAnnotations(annotations)
     }
     
+    //Delegate methods
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         let reuseIdentifier = "pin"

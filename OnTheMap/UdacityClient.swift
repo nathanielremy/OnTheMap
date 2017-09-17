@@ -16,10 +16,10 @@ class UdacityClient {
         return client
     }()
     
+    //Will return foundation object from a network task or error
     func udacityDataProvider(URLrequest request: URLRequest, completionHandlerForUdacityDataProvider: @escaping (_ results: AnyObject?, _ error: NSError?) -> Void) {
         
-        let task = URLSession.shared
-        .dataTask(with: request) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             func displayError(_ error: String) {
                 print(error)
