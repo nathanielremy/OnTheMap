@@ -11,26 +11,30 @@ import Foundation
 extension ParseClient {
     
     func addLocation(completionHandler: @escaping (_ success: Bool, _ error: NSError?) -> Void) {
+
+        guard let uniqueKey = self.accountKey, let firstName = self.firstName, let lastName = self.lastName, let mapString = self.mapString, let mediaURL = self.mediaURL, let lat = self.latitude, let long = self.longitude else {
+            print("NOOOOO")
+            return
+        }
+        let httpBody = "{\"uniqueKey\": \"\(uniqueKey)\", \"firstName\": \"\(firstName)\", \"lastName\": \"\(lastName)\",\"mapString\": \"\(mapString)\", \"mediaURL\": \"\(mediaURL)\",\"latitude\": \(lat), \"longitude\": \(long)}"
         
-        //FIXME: NEEDS TO BE FIXED
+        let parameters = [String:String]()
+        let url = parseURLFromParameters(parameters)
+        let request = customURLRequest(from: url, HTTPBody: httpBody, headerFields: [ConstantsParse.QueryItemKeys.contentType:ConstantsParse.QueryItemValues.contentTypeValue], method: ConstantsParse.URLRequest.postMethod)
         
-//        guard let uniqueKey = self.accountKey, let firstName = self.firstName, let lastName = self.lastName, let mapString = self.mapString, let mediaURL = self.mediaURL, let lat = self.latitude, let long = self.longitude else {
-//            print("NOOOOO")
-//            return
-//        }
-//        
-//        let parameters = [String:String]()
-//        let url = parseURLFromParameters(parameters)
-//        
-//        let httpBody = "{\"uniqueKey\": \"\(uniqueKey)\", \"firstName\": \"\(firstName)\", \"lastName\": \"\(lastName)\",\"mapString\": \"\(mapString)\", \"mediaURL\": \"\(mediaURL)\",\"latitude\": \(lat), \"longitude\": \(long)}"
-//        
-//        let request = customURLRequest(from: url, HTTPBody: httpBody, headerFields: ["Content-Type":"application/json"])
-//        
-//        parseDataProvider(URLRequest: request) { (result, error) in
-//            guard (error == nil) else { completionHandler(false, error!); print("Errrorr"); return }
-//            
-//            print("Result: \(result)")
-//        }
+        parseDataProvider(URLRequest: request) { (result, error) in
+            
+            guard (error == nil) else { completionHandler(false, error!); return }
+            
+            if let _ = result {
+                completionHandler(true, nil)
+            } else {
+                let userInfo = [NSLocalizedDescriptionKey:"No error but also no result when adding location"]
+                completionHandler(false, NSError(domain: "addLocation", code: 1, userInfo: userInfo))
+                return
+            }
+            
+        }
         
     }
     

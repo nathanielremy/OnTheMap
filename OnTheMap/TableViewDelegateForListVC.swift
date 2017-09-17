@@ -38,9 +38,12 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
             displayAlerView(withTitle: "Could not open URL", message: "User did not leave a valid URL", action: "Okay")
             return
         }
-        
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        
+        UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
+            if success == false {
+                DispatchQueue.main.async {
+                    self.displayAlerView(withTitle: "Could not open URL", message: "User did not leave a valid URL", action: "Okay")
+                }
+            }
+        })
     }
-    
 }

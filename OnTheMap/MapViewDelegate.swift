@@ -49,6 +49,7 @@ extension MapVC: MKMapViewDelegate {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
             pinView!.canShowCallout = true
             pinView!.pinTintColor = .red
+            pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         }
         return pinView
     }
@@ -59,7 +60,13 @@ extension MapVC: MKMapViewDelegate {
             guard let urlString = view.annotation?.subtitle as? String, let url = URL(string: urlString) else {
                 displayAlerView(withTitle: "Could not open URL", message: "User did not leave a valid URL", action: "Okay"); return }
             
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
+                if success == false {
+                    DispatchQueue.main.async {
+                        self.displayAlerView(withTitle: "Could not open URL", message: "User did not leave a valid URL", action: "Okay")
+                    }
+                }
+            })
         }
     }
 }

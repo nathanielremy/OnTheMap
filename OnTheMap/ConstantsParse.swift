@@ -27,6 +27,10 @@ class ConstantsParse {
         static let apiKey = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
     }
     
+    struct URLRequest {
+        static let postMethod = "POST"
+    }
+    
     struct JSONResponseKeys {
         static let results = "results"
         static let objectID = "objectId"
@@ -42,11 +46,13 @@ class ConstantsParse {
     struct QueryItemKeys {
         static let limit = "limit"
         static let order = "order"
+        static let contentType = "Content-Type"
     }
     
     struct QueryItemValues {
         static let limit = "100"
         static let order = "-updatedAt"
+        static let contentTypeValue = "application/json"
     }
     
 }

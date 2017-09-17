@@ -65,8 +65,16 @@ class InformationPostingVC: UIViewController {
             
             parseClient.addLocation(completionHandler: { (success, error) in
                 
+                guard (error == nil) else {
+                    DispatchQueue.main.async {
+                        self.displayAlerView(withTitle: "Could not add location", message: "Please try again", action: "Okay")
+                    }
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
             })
-            self.dismiss(animated: true, completion: nil)
         }
     }
     

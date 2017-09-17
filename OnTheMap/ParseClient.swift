@@ -56,11 +56,15 @@ class ParseClient {
     }
     
     //Create a custom URLRequest
-    func customURLRequest(from url: URL, HTTPBody body: String?, headerFields headers: [String:String]?) -> URLRequest {
+    func customURLRequest(from url: URL, HTTPBody body: String?, headerFields headers: [String:String]?, method: String? = nil) -> URLRequest {
         
         let request = NSMutableURLRequest(url: url)
         request.addValue(ConstantsParse.APIHeaderValues.apiKey, forHTTPHeaderField: ConstantsParse.APIHeaderKeys.key)
         request.addValue(ConstantsParse.APIHeaderValues.applicationID, forHTTPHeaderField: ConstantsParse.APIHeaderKeys.ID)
+        
+        if let httpMethod = method {
+            request.httpMethod = httpMethod
+        }
         
         if let jsonBody = body {
             request.httpBody = jsonBody.data(using: .utf8)
