@@ -14,7 +14,7 @@ extension MapVC: MKMapViewDelegate {
     //Method to add recent locations on mapView as pins with annotations
     func updateMapUI() {
         
-        let locations = parseClient.studentInformation
+        let locations = StudentInformation.studentArray
         var annotations = [MKPointAnnotation]()
         
         for location in locations {

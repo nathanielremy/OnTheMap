@@ -57,11 +57,11 @@ extension ParseClient {
                 return
             }
             
-            self.studentInformation.removeAll()
+            StudentInformation.studentArray.removeAll()
             
             for result in results {
                 let student = StudentInformation(fromDictionary: result)
-                self.studentInformation.append(student)
+                StudentInformation.studentArray.append(student)
             }
          completionHandlerForLoadRecents(true, nil)
         }

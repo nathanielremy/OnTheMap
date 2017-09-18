@@ -13,12 +13,12 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     
     //DataSource methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return parseClient.studentInformation.count
+        return StudentInformation.studentArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let student = parseClient.studentInformation[indexPath.row]
+        let student = StudentInformation.studentArray[indexPath.row]
         
         let cellID = "cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID)!
@@ -34,7 +34,7 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     //Delegate methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let student = parseClient.studentInformation[indexPath.row]
+        let student = StudentInformation.studentArray[indexPath.row]
         
         guard let urlString = student.mediaURL, let url = URL(string: urlString) else {
             displayAlerView(withTitle: "Could not open URL", message: "User did not leave a valid URL", action: "Okay")

@@ -18,7 +18,7 @@ class ParseClient {
     var mediaURL: String? = nil
     var latitude: Double? = nil
     var longitude: Double? = nil
-    var studentInformation = [StudentInformation]()
+//    var studentInformation = [StudentInformation]()
     
     func parseDataProvider(URLRequest request: URLRequest, completionHandlerForParseDataProvider: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void ) {
         

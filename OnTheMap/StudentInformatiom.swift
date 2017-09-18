@@ -19,6 +19,8 @@ struct StudentInformation {
     let objectID: String?
     let uniqueKey: String?
     
+    static var studentArray = [StudentInformation]()
+    
     init(fromDictionary dictionary: [String:AnyObject]) {
         
         if let firstName = dictionary[ConstantsParse.JSONResponseKeys.firstName] as? String {
